@@ -1,3 +1,4 @@
+import 'package:basic_todo_app/screens/meal_details_screen.dart';
 import 'package:basic_todo_app/widgets/meal_item.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,19 @@ class MealsScreen extends StatelessWidget {
 
   final String title;
   final List<Meal> meals;
+
+  /// Call when select at the meal item.
+  /// It will push to detail page.
+  void _selectMeal(BuildContext context, Meal meal) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MealDetailsScreen(
+          meal: meal,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +67,10 @@ class MealsScreen extends StatelessWidget {
     } else {
       return ListView.builder(
         itemCount: meals.length,
-        itemBuilder: (context, index) => MealItem(meal: meals[index]),
+        itemBuilder: (context, index) => MealItem(
+          meal: meals[index],
+          onSelectMeal: (meal) => _selectMeal(context, meal),
+        ),
       );
     }
   }
