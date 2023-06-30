@@ -1,4 +1,4 @@
-# basic_todo_app
+# Meals Application
 
 This project is the one of the training projects of Flutter & Dart - The Complete Guide course.
 
