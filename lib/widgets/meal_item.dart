@@ -3,6 +3,9 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../models/meal.dart';
 
+/// Meal Item that shows the item that contains title and image of meal.
+///
+/// Required [meal] to get a meal detail for showing in card.
 class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
@@ -21,13 +24,18 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Stack(
         children: [
+          // Fading when placeholder image not the same as networkImage.
           FadeInImage(
+            // Use MemoryImage to store image to memory and make it resuable.
+            // Hench, they don't need to reload image again.
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(meal.imageUrl),
             fit: BoxFit.cover,
             height: 200,
             width: double.infinity,
           ),
+
+          // Title of meal text.
           Positioned(
             bottom: 0,
             left: 0,

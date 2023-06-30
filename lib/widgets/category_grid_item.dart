@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/category.dart';
 
+/// Category Item for grid view that show a name of category on the gradient color.
+///
+/// Required [category] to show title of category.
+/// Required [onSelectCategory] function to handle when item is clicked.
 class CategoryGridItem extends StatelessWidget {
   const CategoryGridItem({
     super.key,
@@ -31,6 +35,8 @@ class CategoryGridItem extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
+
+        // Title text
         child: Text(
           category.title,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(

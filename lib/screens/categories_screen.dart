@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import '../data/dummy_data.dart';
 import '../models/category.dart';
 
+/// Categories Screen that contains all categories to select for filtering meals.
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
+  /// It will bring to Meals Screen that will show all meals of selected category.
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
         .where((meal) => meal.categories.contains(category.id))
@@ -30,6 +32,7 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pick youe category'),
       ),
+      // GridView for showing Categories
       body: GridView.builder(
         padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

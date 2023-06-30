@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
 
+/// Meals Screen that contains all meals of selected category.
+///
+/// Required [title] to show in app bar.
+/// Required [meals] to show a list view of meal.
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
@@ -23,6 +27,8 @@ class MealsScreen extends StatelessWidget {
 
   /// Content of all meals of selected category.
   Widget _contents(BuildContext context) {
+    // If meals argument is empty show found nothing text.
+    // Otherwise, show ListView of MealItem.
     if (meals.isEmpty) {
       return Center(
         child: Column(
