@@ -1,3 +1,4 @@
+import 'package:basic_todo_app/widgets/meal_item_trait.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -13,6 +14,10 @@ class MealItem extends StatelessWidget {
   });
 
   final Meal meal;
+
+  String _toPascelCaseText(String text) {
+    return text[0].toUpperCase() + text.substring(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +61,27 @@ class MealItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const Row(
-                    children: [],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      MealItemTrait(
+                        icon: Icons.schedule,
+                        label: '${meal.duration} min',
+                      ),
+                      const SizedBox(width: 12),
+                      MealItemTrait(
+                        icon: Icons.work,
+                        label: _toPascelCaseText(meal.complexity.name),
+                      ),
+                      const SizedBox(width: 12),
+                      MealItemTrait(
+                        icon: Icons.attach_money,
+                        label: _toPascelCaseText(meal.affordability.name),
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
