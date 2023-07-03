@@ -11,11 +11,9 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,
     required this.filteredMeals,
-    required this.onToggleFavorite,
   });
 
   final List<Meal> filteredMeals;
-  final void Function(Meal meal) onToggleFavorite;
 
   /// It will bring to Meals Screen that will show all meals of selected category.
   void _selectCategory(BuildContext context, Category category) {
@@ -29,7 +27,6 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: categoryMeals,
-          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
