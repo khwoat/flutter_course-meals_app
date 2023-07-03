@@ -6,16 +6,16 @@ import '../models/meal.dart';
 
 /// Meals Screen that contains all meals of selected category.
 ///
-/// Required [title] to show in app bar.
+/// [title] to show a title in app bar.
 /// Required [meals] to show a list view of meal.
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
   });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   /// Call when select at the meal item.
@@ -33,10 +33,14 @@ class MealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: _contents(context),
-    );
+    if (title == null) {
+      return _contents(context);
+    } else {
+      return Scaffold(
+        appBar: AppBar(title: Text(title!)),
+        body: _contents(context),
+      );
+    }
   }
 
   /// Content of all meals of selected category.
