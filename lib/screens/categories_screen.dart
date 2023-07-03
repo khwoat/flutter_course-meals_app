@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 
 import '../data/dummy_data.dart';
 import '../models/category.dart';
+import '../models/meal.dart';
 
 /// Categories Screen that contains all categories to select for filtering meals.
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({
+    super.key,
+    required this.onToggleFavorite,
+  });
+
+  final void Function(Meal meal) onToggleFavorite;
 
   /// It will bring to Meals Screen that will show all meals of selected category.
   void _selectCategory(BuildContext context, Category category) {
@@ -21,6 +27,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
+          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
