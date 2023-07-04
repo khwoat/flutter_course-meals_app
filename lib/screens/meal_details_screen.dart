@@ -14,6 +14,8 @@ class MealDetailsScreen extends ConsumerWidget {
 
   final Meal meal;
 
+  /// When pressed the favorite icon it will save to the list in favorite provider.
+  /// And show the snackbar.
   void onFavoritePressed(BuildContext context, WidgetRef ref) {
     final wasAdded =
         ref.read(favoritesProvider.notifier).toggleMealFavoriteStatus(meal);
@@ -45,7 +47,28 @@ class MealDetailsScreen extends ConsumerWidget {
             onPressed: () {
               onFavoritePressed(context, ref);
             },
-            icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+            // Animated Switcher of Favorite icon that has a rotaion, fade, and scale transition.
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: (child.key == const ValueKey(true))
+                      ? animation.drive(Tween(begin: 0.8, end: 1))
+                      : animation.drive(Tween(begin: 1, end: 0.8)),
+                  child: FadeTransition(
+                    opacity: Tween(begin: 0.5, end: 1.0).animate(animation),
+                    child: ScaleTransition(
+                      scale: animation,
+                      child: child,
+                    ),
+                  ),
+                );
+              },
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isFavorite),
+              ),
+            ),
           )
         ],
       ),
@@ -53,11 +76,14 @@ class MealDetailsScreen extends ConsumerWidget {
         child: Column(
           children: [
             // Image
-            Image.network(
-              meal.imageUrl,
-              height: 300,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: 24),
 

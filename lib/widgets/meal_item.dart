@@ -35,15 +35,18 @@ class MealItem extends StatelessWidget {
         onTap: () => onSelectMeal(meal),
         child: Stack(
           children: [
-            // Fading when placeholder image not the same as networkImage.
-            FadeInImage(
-              // Use MemoryImage to store image to memory and make it resuable.
-              // Hench, they don't need to reload image again.
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              height: 200,
-              width: double.infinity,
+            Hero(
+              tag: meal.id,
+              // Fading when placeholder image not the same as networkImage.
+              child: FadeInImage(
+                // Use MemoryImage to store image to memory and make it resuable.
+                // Hench, they don't need to reload image again.
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
             ),
 
             // Title of meal text.
