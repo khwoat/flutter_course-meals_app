@@ -1,6 +1,8 @@
-# Meals Application
+# Meals Application (Unable to run)
 
 This project is the one of the training projects of Flutter & Dart - The Complete Guide course. From this project, I learned about best practice for navigation, passing data between screen, callback function, and animation. Moreover, I have learned about Riverpod state management.
+
+This project is unable to run because its firebase service was deleted.
 
 ## Getting Started
 
